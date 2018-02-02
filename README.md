@@ -1,6 +1,11 @@
+This project started out of my Compiler Design class in college, which I've finally decided to finish.
+
+Thus far, this compiler will provide to the user wether or not the file given is in the language or not, and will fully parse and tokenize the file given. This is all done through an implementation of Earley Parsing and a recursive analysis of the parse tree.
+
 How to run the Crystal code: 
 
 1. Check to make sure Crystal is installed by using the command "crystal" in the terminal
+
 	1.1. If Crystal is not installed consult the installation guide which can be found here: https://crystal-lang.org/docs/installation/
 
 2. To build a Crystal program use the command "build" followed by the file to build
