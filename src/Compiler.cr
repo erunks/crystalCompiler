@@ -7,9 +7,6 @@ class Compiler
   def initialize(file)
     @grammer = CFG.new
     @grammer.constructFromFile("./language.txt")
-    #@grammer.calculateNullable
-    #@grammer.calculateFirst
-    #@grammer.calculateFollow
     if (file.nil?)
       @grammer.tokenizeFile("../correctInputs/1.txt")
     else
@@ -216,7 +213,6 @@ class Compiler
         exit -1
       elsif (node.has_child?("ACT"))
         actNum = romanToInt(node.children[1].lexeme)
-        # p "#{@expectedAct} < #{actNum}"
         if (@expectedAct < actNum)
           p "WE HAVEN'T GOTTEN TO ACT #{actNum} YET, #{@addresser}"
           exit -1
@@ -297,8 +293,6 @@ class Compiler
             exit -1
           end
         end
-
-        #arithmetic = node.children[3]
 
         return
       when "IS"
@@ -404,5 +398,4 @@ class Compiler
 
     return sentence
   end
-
 end

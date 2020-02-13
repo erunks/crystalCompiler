@@ -32,16 +32,13 @@ class CFG
 
   def addProduction(var : String, produce : Regex)
     if !@terminals[var]?
-      # @terminals.push(var)
       @terminals[var] = [] of Regex
     end
-    # puts "Regexp";
     @terminals[var].push(produce)
   end
 
   def addProduction(var : String, produce : String)
     if !@variables[var]?
-      # @variables.push(var)
       @variables[var] = [] of String
     end
     if (produce.includes?('|'))
@@ -158,7 +155,6 @@ class CFG
           end
           match = $~
           if (idx == match.begin(0))
-            # p match;
             if (match[0].includes?("\n"))
               line += 1
             end
@@ -166,7 +162,6 @@ class CFG
             tempMatch = match[0].gsub('\n',' ').squeeze(' ')
             if(key == "ACTOR")
               tempMatch = tempMatch.gsub(/\b\w/, &.capitalize)
-              #p "ACTOR #{tempMatch}"
             end
             tokens.push(Token.new(key, line, tempMatch))
             found = true
@@ -215,7 +210,7 @@ class CFG
       @first[key] = Set.new([key])
     end
     tempFirst = @first
-    # idx = 1;
+
     loop do
       # puts("\nITERATIONS: #{idx}")
       @first = @first.merge(tempFirst)
@@ -262,7 +257,6 @@ class CFG
           next
         end
       end
-      # idx+=1;
       break if (@first == tempFirst)
     end
   end
@@ -274,9 +268,7 @@ class CFG
     end
     @follow[@startState] = Set.new(["$"])
     tempFollow = @follow
-    # idx = 1;
     loop do
-      # puts("\nITERATIONS: #{idx}")
       @follow = @follow.merge(tempFollow)
       tempFollow = @follow.clone
 
@@ -286,7 +278,6 @@ class CFG
             # puts("#{key} -> #{product}")
             elements = product.split(' ')
             elements.each_with_index do |x, i|
-              # p i
               breakOut = false
               if (!@terminals.has_key?(x))
                 elements[i + 1..elements.size].each do |y|
@@ -297,7 +288,6 @@ class CFG
                     tempFollow[x] = tempFollow[x] | @first[y]
                     if (!@nullable.includes?(y))
                       # puts("#{y} BROKEOUT!");
-                      # puts "";
                       breakOut = true
                       break
                     end
@@ -317,7 +307,6 @@ class CFG
           next
         end
       end
-      # idx+=1;
       break if (@follow == tempFollow)
     end
   end
@@ -329,7 +318,6 @@ class CFG
       masterNull = masterNull | tempNull
       tempNull = masterNull.clone
       @variables.each do |key, value|
-        # if(masterNull.member?(var)) then next end;
         value.each do |product|
           breakOut = false
           if (!product.empty?)
@@ -398,8 +386,9 @@ class CFG
   end
 
   def earleyParse
-    p "START!"
-    n = @tokenData.size                     # length of the tokens we're trying to parse
+    # p "START!"
+    # length of the tokens we're trying to parse
+    n = @tokenData.size
 
     @parseTable = addItem(Item.new("S'", ["#{@startState}"], 0, "Start", [] of Item), 0, 0)
     (0..n).each do |col|
@@ -429,7 +418,7 @@ class CFG
                     end
                   end
                   if ((item.lhs == "S'") && (item.dpos == item.rhs.size) && ((col == n) && (row == 0))) # check if we've found a soultion
-                    p "FINISHED!"
+                    # p "FINISHED!"
                     viewTable(@parseTable, @tokenData.size)
                     root = makeTree(item, TreeNode.new(item.rhs[item.dpos - 1], @tokenData[item.col - 1].lexeme, nil))
                     @parseTreeRoot = root.as(TreeNode)
@@ -446,7 +435,7 @@ class CFG
     end
     viewTable(@parseTable, @tokenData.size)
 
-    p "fell out"
+    # p "fell out"
     exit -1
   end
 
@@ -493,6 +482,6 @@ class CFG
 
   def prune(parent : TreeNode, child : TreeNode, index : Int32)
     parent.children.delete_at(index)
-    p "Removed #{child.to_s} from #{parent.to_s}"
+    # p "Removed #{child.to_s} from #{parent.to_s}"
   end
 end

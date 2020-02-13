@@ -1,25 +1,3 @@
-# struct TreeNode
-#  property symbol, lexeme, index, children : Array(TreeNode), parent : TreeNode | Nil
-#
-#  def initialize
-#    @symbol = ""
-#    @lexeme = ""
-#    @parent = nil
-#    @index = 0
-#    @children = [] of TreeNode
-#  end
-#
-#  def initialize(@symbol : String, @lexeme = "", @parent = Nil, @index = 0, @children = [] of TreeNode)
-#  end
-#
-#  def initialize(@symbol : String, @lexeme : String, @parent : TreeNode, @index = 0, @children = [] of TreeNode)
-#  end
-#
-#  def clone
-#    return TreeNode.new(symbol, lexeme, parent, index, children)
-#  end
-# end
-
 class TreeNode
   property symbol, lexeme, index, children : Array(TreeNode), parent : TreeNode | Nil
 
