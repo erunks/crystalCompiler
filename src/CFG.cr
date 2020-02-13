@@ -3,7 +3,7 @@ require "./Item"
 require "./Pair"
 require "./Token"
 require "./TreeNode"
-require "./util_Rev"
+require "./util"
 
 class CFG
   getter :variables, :terminals, :productions, :startState, :nullable, :first, :follow, :tokenData, :parseTable, :parseTreeRoot

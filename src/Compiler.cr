@@ -1,5 +1,5 @@
 require "./TreeNode"
-require "./CFG_Rev"
+require "./CFG"
 
 class Compiler
   getter :grammer
@@ -11,13 +11,13 @@ class Compiler
     #@grammer.calculateFirst
     #@grammer.calculateFollow
     if (file.nil?)
-      @grammer.tokenizeFile("./correctInputs/1.txt")
+      @grammer.tokenizeFile("../correctInputs/1.txt")
     else
       @grammer.tokenizeFile(file)
     end
-    before = Time.now
+    before = Time.utc
     @grammer.earleyParse
-    p Time.now - before
+    p Time.utc - before
 
     @actors = Set(String).new
     @activeActors = Set(String).new
