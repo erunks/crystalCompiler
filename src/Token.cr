@@ -7,12 +7,12 @@ class Token
     @lexeme = le
   end
 
-  def class
-    return "Token"
+  def class : String
+    "Token"
   end
 
-  def string
-    return "#{@terminal}\tline=#{@line}\tlexeme=#{@lexeme}"
+  def string : String
+    "#{@terminal}\tline=#{@line}\tlexeme=#{@lexeme}"
   end
 
   # def ==(b)

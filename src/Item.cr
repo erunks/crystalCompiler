@@ -4,7 +4,7 @@ struct Item
   def initialize(@lhs : String, @rhs : Array(String), @dpos : Int32, @origin : String, @ref : Array(Item))
   end
 
-  def string
+  def string : String
     if (dpos != 0)
       length = 0
       (0...dpos).each do |i|
@@ -15,34 +15,34 @@ struct Item
         end
       end
       return "#{lhs} -> #{r = rhs.join(" ").insert(length - 1, '•')}, #{origin}"
-    else
-      return "#{lhs} -> #{r = rhs.join(" ").insert(dpos, '•')}, #{origin}"
     end
+
+    "#{lhs} -> #{r = rhs.join(" ").insert(dpos, '•')}, #{origin}"
   end
 
-  def atDpos
-    return rhs[dpos]
+  def atDpos : String
+    rhs[dpos]
   end
 
-  def col
+  def col : Int32
     temp = origin.split(/[ :]/)
-    return temp[4].to_i32
+    temp[4].to_i32
   end
 
-  def row
+  def row : Int32
     temp = origin.split(/[ :]/)
-    return temp[1].to_i32
+    temp[1].to_i32
   end
 
-  def ==(b)
-    return (self.hash == b.hash) ? true : false
+  def ==(b) : Bool
+    self.hash == b.hash
   end
 
-  def hash
-    return {:lhs => lhs, :rhs => rhs, :dpos => dpos, :origin => origin}.hash
+  def hash : UInt64
+    {:lhs => lhs, :rhs => rhs, :dpos => dpos, :origin => origin}.hash
   end
 
-  def clone
-    return Item.new(lhs, rhs, dpos, origin, ref)
+  def clone : Item
+    Item.new(lhs, rhs, dpos, origin, ref)
   end
 end

@@ -15,11 +15,11 @@ class TreeNode
   def initialize(@symbol : String, @lexeme : String, @parent : TreeNode, @index = 0, @children = [] of TreeNode)
   end
 
-  def clone
+  def clone : TreeNode
     return TreeNode.new(symbol, lexeme, parent, index, children)
   end
 
-  def to_s
+  def to_s : String
     if (@parent != nil)
       return "Symbol: #{@symbol}, Lexeme: #{@lexeme}, Parent: #{@parent.nil?}, Children: #{@children.size}"
     else
@@ -27,7 +27,7 @@ class TreeNode
     end
   end
 
-  def has_child?(search : String)
+  def has_child?(search : String) : Bool
     if (@children.empty?)
       return false
     else

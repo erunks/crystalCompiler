@@ -6,7 +6,7 @@ struct Pair
 		@y = y
 	end
 
-	def ==(b : Pair)
+	def ==(b : Pair) : Bool
 		if((@x - b.x) == 0)
 			if((@y - b.y) == 0)
 				return true
@@ -18,15 +18,15 @@ struct Pair
 		end
 	end
 
-	def hash
-		return {:x => @x, :y => @y}.hash
+	def hash : UInt64
+		{:x => @x, :y => @y}.hash
 	end
 
-	def name
-		return "Pair"
+	def name : String
+		"Pair"
 	end
 
-	def to_s
-		return "#{@x}:#{@y}"
+	def to_s : String
+		"#{@x}:#{@y}"
 	end
 end

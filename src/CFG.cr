@@ -185,24 +185,24 @@ class CFG
       end
     end
     @tokenData = tokens
-    return tokens
+    @tokenData
   end
 
-  def tokenizeFile(filename)
+  def tokenizeFile(filename) : String
     file = File.open(filename, "r")
     content = file.gets_to_end
 
     @tokenData = tokenize(content)
-    return makeItNice(@tokenData)
+    makeItNice(@tokenData)
   end
 
-  def makeItNice(tokens)
+  def makeItNice(tokens) : String
     string = ""
 
     tokens.each do |token|
       string += "[ Line: #{token.line},\tToken: #{token.terminal},\tLexeme: #{token.lexeme} ]\n"
     end
-    return string
+    string
   end
 
   def calculateFirst
@@ -345,7 +345,7 @@ class CFG
       @parseTable[tempPair] = Set(Item).new
     end
 
-    return tempPair
+    tempPair
   end
 
   def addItem(item : Item, row : Int32, col : Int32)
@@ -382,7 +382,7 @@ class CFG
       end
     end
 
-    return @parseTable
+    @parseTable
   end
 
   def earleyParse

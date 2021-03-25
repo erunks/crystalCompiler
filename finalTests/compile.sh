@@ -1,1 +1,1 @@
-crystal build ../main.cr --error-trace --release
+crystal build ../src/main.cr --error-trace --release
