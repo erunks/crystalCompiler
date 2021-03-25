@@ -1,10 +1,9 @@
 #production
+/build
 **/*.dwarf
 **/*.dot
 **/*.html
 **/batchresults.txt
-
-
 
 # misc
 .DS_Store
