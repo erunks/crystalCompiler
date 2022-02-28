@@ -1,21 +1,11 @@
 struct Pair
 	property x, y
 
-	def initialize(x : Int32, y : Int32)
-		@x = x
-		@y = y
+	def initialize(@x : Int32, @y : Int32)
 	end
 
 	def ==(b : Pair) : Bool
-		if((@x - b.x) == 0)
-			if((@y - b.y) == 0)
-				return true
-			else
-				return false
-			end
-		else
-			return false
-		end
+		(@x - b.x == 0) && (@y - b.y == 0)
 	end
 
 	def hash : UInt64

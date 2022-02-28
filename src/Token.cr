@@ -12,7 +12,7 @@ class Token
   end
 
   def string : String
-    "#{@terminal}\tline=#{@line}\tlexeme=#{@lexeme}"
+    "#{terminal}\tline=#{line}\tlexeme=#{lexeme}"
   end
 
   # def ==(b)
